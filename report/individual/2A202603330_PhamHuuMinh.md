@@ -12,7 +12,7 @@ ai ngồi cạnh để đối chiếu hai con số. Mục 5 mình ghi đúng nh�
 Tổng cộng 79 cuboid: Car 62, Cyclist 9, Truck 4, Pedestrian 2, Bus 2. Frame đầu `s01f26` có 11
 hộp; ít nhất là `s02f32` với 5 hộp, vì cảnh đó là đoạn đường hai bên trồng cây dày, cụm điểm của
 cây và của hàng rào dính vào nhau nên mình chỉ vẽ những xe mình chắc, còn lại bỏ. 67 trong 79 hộp
-nằm trong 30 m. `selfcheck` cờ 3/79 cuboid, cả hai mình giữ nguyên và ghi lý do ở mục 5. Phần mình tin
+nằm trong 30 m. `selfcheck` cờ 4/79 cuboid, cả hai mình giữ nguyên và ghi lý do ở mục 5. Phần mình tin
 nhất là hướng của xe trong hàng chờ: ảnh camera nhìn rõ đuôi xe nên biết chắc xe đi cùng chiều.
 Phần yếu nhất là hướng của người đi bộ và xe hai bánh, và kích thước của vật ngoài 30 m, chỗ đó
 cụm điểm chỉ còn vài chục điểm nên chiều dài phải suy ra chứ không đo được. Chỗ đó mình đoán
@@ -158,7 +158,7 @@ chạy lại `sync`, số cờ còn 2. Hai hộp sửa rõ nhất:
 - `s03f52` #5 (Bus): đáy từ −0,84 m xuống −1,75 m, trước đó lơ lửng 0,98 m trên mặt đường.
 - `s03f02` #7 (Car): đáy từ −1,01 m xuống −1,75 m, trước đó lơ lửng 0,71 m.
 
-Ba cảnh báo mình giữ nguyên, kèm lý do:
+Bốn cảnh báo mình giữ nguyên, kèm lý do:
 
 - `s01f26` #7 (Pedestrian): "44 điểm sát ngay ngoài mép, quá chật". Người này đứng ngay cạnh hàng xe
   đạp công cộng, số điểm sát mép là của mấy chiếc xe đạp chứ không phải của người. Nới hộp cho hết
@@ -166,6 +166,10 @@ Ba cảnh báo mình giữ nguyên, kèm lý do:
 - `s03f52` #6 (Car): "18 điểm sát ngay ngoài mép". Đây là chiếc xe đỏ ở 31 m, cụm điểm chỉ còn
   phần đuôi nên hộp lấy theo kích thước thấp nhất của bảng 4.3; mấy điểm sát mép là của chiếc xe
   ngay sau nó. Nới hộp ra thì sẽ bao sang xe kia.
+- `s05f43` #1 (Car): "width = 3,10 ngoài khoảng 1,4–2,3 của Car". Hộp này mình chỉnh tay trên CVAT
+  sau khi đã xuất bảng A lần trước: kéo rộng ra 3,10 m, vượt khoảng 1,70–2,10 của bảng 4.3. Mình
+  giữ nguyên kích thước đã chỉnh và ghi lại ở đây để người chấm biết đó là chủ ý chứ không phải
+  script dựng sai.
 - `s04f09` #7 (Bus): "đáy cao hơn mặt đường 0,81 m". `selfcheck` ước mặt đường từ các điểm quanh chân
   hộp, mà quanh xe buýt này là dải phân cách và hàng rào công trình cao hơn lòng đường nên mức nền
   nó lấy bị cao. Mình đặt đáy theo mặt đường đo quanh xe thu dữ liệu (−1,74 m) và giữ nguyên.
