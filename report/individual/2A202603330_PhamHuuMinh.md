@@ -9,10 +9,10 @@ docs/CVAT_SETUP.md mục 8; lệnh `task` và `report` có in cảnh báo SDK 2.
 mình bỏ qua). Phần đổi kiểm với bạn ngồi cạnh thì mình chưa làm được: bài này làm ngoài giờ lab, không có
 ai ngồi cạnh để đối chiếu hai con số. Mục 5 mình ghi đúng như vậy, không điền MSSV của ai.
 
-Tổng cộng 80 cuboid: Car 63, Cyclist 9, Truck 4, Pedestrian 2, Bus 2. Frame đầu `s01f26` có 11
+Tổng cộng 79 cuboid: Car 62, Cyclist 9, Truck 4, Pedestrian 2, Bus 2. Frame đầu `s01f26` có 11
 hộp; ít nhất là `s02f32` với 5 hộp, vì cảnh đó là đoạn đường hai bên trồng cây dày, cụm điểm của
-cây và của hàng rào dính vào nhau nên mình chỉ vẽ những xe mình chắc, còn lại bỏ. 68 trong 80 hộp
-nằm trong 30 m. `selfcheck` cờ 2/80 cuboid, cả hai mình giữ nguyên và ghi lý do ở mục 5. Phần mình tin
+cây và của hàng rào dính vào nhau nên mình chỉ vẽ những xe mình chắc, còn lại bỏ. 67 trong 79 hộp
+nằm trong 30 m. `selfcheck` cờ 3/79 cuboid, cả hai mình giữ nguyên và ghi lý do ở mục 5. Phần mình tin
 nhất là hướng của xe trong hàng chờ: ảnh camera nhìn rõ đuôi xe nên biết chắc xe đi cùng chiều.
 Phần yếu nhất là hướng của người đi bộ và xe hai bánh, và kích thước của vật ngoài 30 m, chỗ đó
 cụm điểm chỉ còn vài chục điểm nên chiều dài phải suy ra chứ không đo được. Chỗ đó mình đoán
@@ -20,8 +20,8 @@ nhiều hơn đo.
 
 Vòng đầu mình vẽ 70 hộp. Soát lại lần hai mới thấy mình bỏ sót hẳn một nhóm: những xe mà cụm điểm
 dính vào hàng rào hoặc tán cây nên nhìn qua không ra hình xe, ví dụ chiếc Audi vàng đang băng qua
-ngã tư ở `s01f26` hay chiếc Mercedes ngay trước mũi xe ở `s03f52`. Mình thêm 11 hộp như vậy rồi bỏ lại 1 hộp đặt
-không khớp, còn 10. Đó là phần sửa đáng giá nhất của buổi, vì độ phủ chỉ tính vật trong 30 m.
+ngã tư ở `s01f26` hay chiếc Mercedes ngay trước mũi xe ở `s03f52`. Mình thêm 11 hộp như vậy rồi bỏ lại 2 hộp đặt
+không khớp, còn 9. Đó là phần sửa đáng giá nhất của buổi, vì độ phủ chỉ tính vật trong 30 m.
 
 Cách dùng CVAT, ba dòng mình phải nhớ:
 
@@ -144,7 +144,7 @@ Mật độ theo khoảng cách:
 Quy luật: **xa gấp đôi thì số điểm còn khoảng một phần tư**, đúng kiểu giảm theo bình phương khoảng
 cách. Từ 5 m ra 10 m còn 42%, từ 10 m ra 20 m còn 24%, từ 20 m ra 32 m còn 53% (ô cuối cao hơn luật
 vì chiếc ở 31,9 m là xe to và quay sườn về phía LiDAR). Lấy trung vị của cả 63 xe con mình vẽ thì
-được 1501 điểm ở 0–10 m, 706 ở 10–20 m, 189 ở 20–30 m, 138 ở 30–40 m. So với đường cong ở slide
+được 1501 điểm ở 0–10 m, 712 ở 10–20 m, 189 ở 20–30 m, 138 ở 30–40 m. So với đường cong ở slide
 (1968 / 718 / 214 / 72) thì vành 10–20 m khớp gần như đúng, hai vành 0–10 m và 20–30 m của mình
 thấp hơn, còn vành 30–40 m lại cao gần gấp đôi. Hai cái lệch ngược chiều nhau nhưng cùng một lý do
 là cách chọn mẫu: ở gần mình vẽ cả những xe chỉ ló một phần sau xe khác, còn ở xa mình chỉ giữ xe
@@ -158,11 +158,14 @@ chạy lại `sync`, số cờ còn 2. Hai hộp sửa rõ nhất:
 - `s03f52` #5 (Bus): đáy từ −0,84 m xuống −1,75 m, trước đó lơ lửng 0,98 m trên mặt đường.
 - `s03f02` #7 (Car): đáy từ −1,01 m xuống −1,75 m, trước đó lơ lửng 0,71 m.
 
-Hai cảnh báo mình giữ nguyên, kèm lý do:
+Ba cảnh báo mình giữ nguyên, kèm lý do:
 
 - `s01f26` #7 (Pedestrian): "44 điểm sát ngay ngoài mép, quá chật". Người này đứng ngay cạnh hàng xe
   đạp công cộng, số điểm sát mép là của mấy chiếc xe đạp chứ không phải của người. Nới hộp cho hết
   cờ thì hộp sẽ bao cả xe đạp, sai hơn.
+- `s03f52` #6 (Car): "18 điểm sát ngay ngoài mép". Đây là chiếc xe đỏ ở 31 m, cụm điểm chỉ còn
+  phần đuôi nên hộp lấy theo kích thước thấp nhất của bảng 4.3; mấy điểm sát mép là của chiếc xe
+  ngay sau nó. Nới hộp ra thì sẽ bao sang xe kia.
 - `s04f09` #7 (Bus): "đáy cao hơn mặt đường 0,81 m". `selfcheck` ước mặt đường từ các điểm quanh chân
   hộp, mà quanh xe buýt này là dải phân cách và hàng rào công trình cao hơn lòng đường nên mức nền
   nó lấy bị cao. Mình đặt đáy theo mặt đường đo quanh xe thu dữ liệu (−1,74 m) và giữ nguyên.
@@ -173,6 +176,21 @@ ngoài mép, nghĩa là hộp đặt lệch khỏi cụm điểm chứ không ph
 `points_in` lên 82 nhưng nhìn trên ảnh cam08 thì hộp vẫn trôi về bên trái chiếc xe, nên mình bỏ hẳn
 hộp đó. Thà thiếu một hộp còn hơn nộp một hộp mình biết là đặt sai. Bài học: `points_in` thấp bất
 thường so với các xe cùng khoảng cách gần như luôn là hộp đặt sai, không phải vật khó.
+
+**Soát lại hướng mũi tên, toàn bộ 80 hộp.** Quy tắc là vạch đỏ `+X` phải chỉ về đầu xe, tức hướng
+xe đang đi. Mình mở lại từng hộp trên ảnh camera, tô trắng mặt `+X` của hộp rồi so với đầu xe thật.
+Kết quả: 76 hộp đúng, 4 hộp sai và đều đã sửa.
+
+| Hộp | Sai ở đâu | Đã sửa |
+|---|---|---|
+| `s05f43` ở 16,6 m | Hộp không nằm trên xe nào: nó phủ hàng rào và một người đi xe máy | Bỏ hẳn hộp |
+| `s05f43` #7 ở 23,7 m | Nhìn cam09 thấy đầu xe ở bên trái khung, mũi tên lại chỉ sang phải | Xoay 180°, yaw 281 → 101 |
+| `s03f52` #6 ở 31 m | Xe đỏ nhìn từ phía đuôi nên nó chạy ra xa, mũi tên lại chỉ ngang sang trái | Đặt yaw 275 |
+| `s05f13` #4 ở 11 m | Xe nằm **bên kia** dải phân cách nên đi ngược chiều; lúc đầu mình tưởng nó cùng chiều | Xoay 180°, yaw 271 → 91 |
+
+Cái sai ở `s05f13` là cái đáng nhớ nhất: trên point cloud nhìn từ trên xuống, xe bên này và xe bên
+kia dải phân cách trông y hệt nhau, chỉ ảnh camera mới cho biết hàng cây ở giữa là dải phân cách
+chứ không phải bồn hoa ven đường. Chọn sai bên là sai 180°, tức là một hộp ngược đầu.
 
 **Đổi kiểm:** chưa thực hiện. Bài này mình làm ngoài buổi lab nên không có bạn ngồi cạnh để đối
 chiếu hai con số trên màn hình. Mình không điền MSSV của ai vào đây.
