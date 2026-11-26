@@ -177,7 +177,7 @@ Vòng soát lại cũng bắt được một lỗi của chính mình. Trong 11 
 trắng ở 21 m trong `s01f26`: `selfcheck` báo chỉ 31 điểm nằm trong hộp mà 55 điểm nằm sát ngay
 ngoài mép, nghĩa là hộp đặt lệch khỏi cụm điểm chứ không phải xe thưa điểm. Mình đặt lại một lần,
 `points_in` lên 82 nhưng nhìn trên ảnh cam08 thì hộp vẫn trôi về bên trái chiếc xe, nên mình bỏ hẳn
-hộp đó. Thà thiếu một hộp còn hơn nộp một hộp mình biết là đặt sai. Bài học: `points_in` thấp bất
+hộp đó (vì vậy hai con số 31 và 82 không còn trong phiếu tự kiểm nộp kèm). Thà thiếu một hộp còn hơn nộp một hộp mình biết là đặt sai. Bài học: `points_in` thấp bất
 thường so với các xe cùng khoảng cách gần như luôn là hộp đặt sai, không phải vật khó.
 
 **Soát lại hướng mũi tên, toàn bộ 80 hộp.** Quy tắc là vạch đỏ `+X` phải chỉ về đầu xe, tức hướng
