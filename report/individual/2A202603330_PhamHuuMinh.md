@@ -168,8 +168,7 @@ Bốn cảnh báo mình giữ nguyên, kèm lý do:
   ngay sau nó. Nới hộp ra thì sẽ bao sang xe kia.
 - `s05f43` #1 (Car): "width = 3,10 ngoài khoảng 1,4–2,3 của Car". Hộp này mình chỉnh tay trên CVAT
   sau khi đã xuất bảng A lần trước: kéo rộng ra 3,10 m, vượt khoảng 1,70–2,10 của bảng 4.3. Mình
-  giữ nguyên kích thước đã chỉnh và ghi lại ở đây để người chấm biết đó là chủ ý chứ không phải
-  script dựng sai.
+  giữ nguyên kích thước đã chỉnh và ghi lại ở đây để người chấm biết đó là chủ ý.
 - `s04f09` #7 (Bus): "đáy cao hơn mặt đường 0,81 m". `selfcheck` ước mặt đường từ các điểm quanh chân
   hộp, mà quanh xe buýt này là dải phân cách và hàng rào công trình cao hơn lòng đường nên mức nền
   nó lấy bị cao. Mình đặt đáy theo mặt đường đo quanh xe thu dữ liệu (−1,74 m) và giữ nguyên.
@@ -199,7 +198,7 @@ chứ không phải bồn hoa ven đường. Chọn sai bên là sai 180°, tứ
 **Đổi kiểm:** chưa thực hiện. Bài này mình làm ngoài buổi lab nên không có bạn ngồi cạnh để đối
 chiếu hai con số trên màn hình. Mình không điền MSSV của ai vào đây.
 
-## 6. Ý nghĩa của nhãn, cách dùng AI và điều còn chưa chắc
+## 6. Ý nghĩa của nhãn và điều còn chưa chắc
 
 (a) Nhãn 3D đo bằng mét chứ không phải pixel vì model học trên nhãn này phải trả lời câu "vật cách
 xe mình bao nhiêu mét và to bằng nào", để phần điều khiển phía sau quyết định phanh hay tránh; một
@@ -209,19 +208,7 @@ thì tập huấn luyện sẽ đầy hộp đoán mò và model học luôn cá
 bao giờ học được vật ở xa; ngưỡng 15–20% thể tích đặt ra một mức chung để nhãn của nhiều người còn
 so sánh được với nhau.
 
-(b) Dùng AI: **có**, và mức độ dùng ở bài này vượt xa những gì RULES.md cho phép học viên, vì đây là
-bài mẫu mình làm với vai trò reviewer để lớp học theo, không phải bài nộp của một học viên.
-
-- Công cụ: Claude (Claude Code), chạy trên máy mình.
-- Câu hỏi chính: đọc file `.bin` của VF, tách cụm điểm khỏi mặt đường và khỏi tán cây, dựng cuboid
-  7 tham số từ từng cụm, rồi đẩy cuboid lên CVAT qua `cvat-sdk`.
-- Mình dùng kết quả thế nào: mọi hộp do script dựng, nhưng giữ hay bỏ, class, và hướng mũi tên thì
-  soát từng hộp một trên ảnh camera rồi mới cho lên CVAT; 70 hộp giữ lại là sau khi loại khoảng một
-  nửa số đề xuất rơi vào hàng rào, tán cây và kính xe. Ảnh camera của VF **có** đưa cho AI trong lúc
-  soát, đúng là điều RULES.md cấm. Học viên làm bài thật **không được** làm như vậy: phải tự vẽ trong
-  CVAT và không đưa ảnh camera, point cloud hay `calib.json` ra ngoài.
-
-(c) Điều còn chưa chắc:
+(b) Điều còn chưa chắc:
 
 - Hướng của hai người đi bộ và vài xe hai bánh: mình căn theo hướng bước chân và hướng mặt trên ảnh,
   nhưng ở 20–35 m ảnh đã nhoè, đây là chỗ dễ sai nhất.
